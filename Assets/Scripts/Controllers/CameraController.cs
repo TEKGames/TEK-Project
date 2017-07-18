@@ -23,8 +23,10 @@ public class CameraController : MonoBehaviour {
 
     private void UpdateCameraTransform()
     {
-        xRot += Input.GetAxis("Mouse X");
-        yRot += invertCamera? Input.GetAxis("Mouse Y") : -Input.GetAxis("Mouse Y"); 
+        xRot += Input.GetAxis("Mouse X") * xSensitivity;
+        yRot += invertCamera? Input.GetAxis("Mouse Y") * ySensitivity : -Input.GetAxis("Mouse Y") * ySensitivity;
+
+        yRot = Mathf.Clamp(yRot, -90, 90);
 
         transform.rotation = Quaternion.Euler(yRot, xRot, 0);
     }
