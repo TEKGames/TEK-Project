@@ -168,6 +168,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1841669942}
+  - component: {fileID: 1841669944}
   - component: {fileID: 1841669943}
   m_Layer: 0
   m_Name: __app
@@ -200,3 +201,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01653364ca5f514e88c1ad532ee1637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1841669944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1841669941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a500e8972125647afb82d839a7f94d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 0
+  devDebug: 1
