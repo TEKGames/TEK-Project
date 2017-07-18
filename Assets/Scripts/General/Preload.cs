@@ -9,7 +9,7 @@ public class Preload : MonoBehaviour {
     {
         if (!GameObject.Find("__app"))
         {
-            SceneManager.LoadScene("_preload");
+            SceneManager.LoadScene("_preload", LoadSceneMode.Additive);
         }
     }
 }
