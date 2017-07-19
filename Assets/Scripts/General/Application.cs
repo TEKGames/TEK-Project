@@ -56,19 +56,4 @@ public class Application : MonoBehaviour {
             return activeApplication.devDebug;
         }
     }
-
-    public static void SetCursor(bool visible, bool locked)
-    {
-        Cursor.visible = visible;
-        switch (locked)
-        {
-            case true:
-                Cursor.lockState = CursorLockMode.Locked;
-                break;
-
-            case false:
-                Cursor.lockState = CursorLockMode.None;
-                break;
-        }
-    }
 }

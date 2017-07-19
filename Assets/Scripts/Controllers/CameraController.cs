@@ -12,17 +12,19 @@ public class CameraController : MonoBehaviour {
     private float xRot;
     private float yRot;
 
-	private void FixedUpdate () {
+	private void Update () {
         UpdateCameraTransform();
 	}
 
     private void Start()
     {
-        Application.SetCursor(true, true);
+        //UI.SetCursor(true, true);
     }
 
     private void UpdateCameraTransform()
     {
+        transform.position = GameManager.player.transform.position + new Vector3(0, 0.8f, 0);
+
         xRot += Input.GetAxis("Mouse X") * xSensitivity;
         yRot += invertCamera? Input.GetAxis("Mouse Y") * ySensitivity : -Input.GetAxis("Mouse Y") * ySensitivity;
 
