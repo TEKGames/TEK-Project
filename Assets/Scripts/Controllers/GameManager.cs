@@ -14,12 +14,12 @@ public class GameManager : MonoBehaviour {
         if (!activeManager)
         {
             activeManager = this;
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("GameManager: activeManager set.");
         }
         else
         {
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("Warning: activeManager already set. (destroying duplicate)");
             Destroy(gameObject);
         }

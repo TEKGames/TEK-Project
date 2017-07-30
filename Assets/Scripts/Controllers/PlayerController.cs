@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float movementSpeed;
     private CharacterController controller;
 
+    public float movementSpeed;
     public float jumpForce;
     public bool isJumping;
+
+    private float verticalVelocity;
 
     private void Awake()
     {
@@ -20,12 +22,12 @@ public class PlayerController : MonoBehaviour {
         if (!GameManager.player)
         {
             GameManager.player = this;
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("PlayerController: Initialized and set.");
         }
         else
         {
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("Warning: Player is already set (Destroying duplicate).");
             Destroy(gameObject);
         }
@@ -41,24 +43,22 @@ public class PlayerController : MonoBehaviour {
     {
         transform.rotation = Quaternion.Euler(new Vector3(0, Camera.main.transform.eulerAngles.y, 0));
 
-        Vector3 moveDirection = Vector3.zero;
-
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= movementSpeed;
-
-        if (controller.isGrounded) {
-            isJumping = false;
-            if (Input.GetButton("Jump"))
-                isJumping = true;
-        }
-
-        if (isJumping)
+        if (controller.isGrounded)
         {
+            verticalVelocity = -GameManager.activeManager.gravity * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                verticalVelocity = jumpForce;
+            }
+        }
+        else
+        {
+            verticalVelocity -= GameManager.activeManager.gravity * Time.deltaTime;
         }
 
-        moveDirection.y -= GameManager.activeManager.gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);
+        Vector3 moveVector = new Vector3(Input.GetAxis("Horizontal") * movementSpeed, verticalVelocity, Input.GetAxis("Vertical") * movementSpeed);
+        moveVector = transform.TransformDirection(moveVector);
+        controller.Move(moveVector * Time.deltaTime);
     }
 
     private void PlayerInput()

@@ -24,12 +24,12 @@ public class InventoryManager : MonoBehaviour {
         if (!controller)
         {
             controller = this;
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("InventoryManager: controller set.");
         }
         else
         {
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("Warning: InventoryManager controller is already set (Destroying duplicate).");
             Destroy(gameObject);
         }
@@ -48,5 +48,9 @@ public class InventoryManager : MonoBehaviour {
         {
             return controller.inventoryEnabled;
         }
+    }
+
+    public static void PickupItem()
+    {
     }
 }

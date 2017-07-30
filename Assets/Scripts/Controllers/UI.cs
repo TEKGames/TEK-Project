@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Menu
@@ -23,6 +24,7 @@ public class UI : MonoBehaviour {
     public static UI controller;
 
     public Menu inventory;
+    public Text actionText;
     public List<ScaleableRect> scaleableObjects;
 
     private void Start()
@@ -30,12 +32,12 @@ public class UI : MonoBehaviour {
         if (!controller)
         {
             controller = this;
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("UI: set controller.");
         }
         else
         {
-            if (Application.UseDebug)
+            if (App.UseDebug)
                 Debug.Log("Warning: UI controller already set (Destroying duplicate).");
             Destroy(gameObject);
         }
@@ -86,5 +88,15 @@ public class UI : MonoBehaviour {
                 Cursor.lockState = CursorLockMode.None;
                 break;
         }
+    }
+
+    public static void SetActionText(bool state)
+    {
+        controller.actionText.gameObject.SetActive(state);
+    }
+
+    public static void UpdateActionText(UseableItem item)
+    {
+        controller.actionText.text = item.ActionString();
     }
 }

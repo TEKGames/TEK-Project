@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Application : MonoBehaviour {
+public class App : MonoBehaviour {
 
     public int sceneToLoad;
     public bool devDebug;
 
-    private static Application activeApplication;
+    private static App activeApplication;
 
     private void Awake()
     {
